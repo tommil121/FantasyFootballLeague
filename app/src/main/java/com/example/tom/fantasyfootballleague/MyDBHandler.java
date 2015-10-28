@@ -95,8 +95,25 @@ public class MyDBHandler extends SQLiteOpenHelper{
 
     }
 
+    //If any database structure is changed, call this method
+    //, and it will drop the tables and recreated it with the updated
+    //onCreate method
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TEAM);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NFL_TEAM);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_POSITION);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLAYER);
+        onCreate(db);
     }
+
+    //TODO Add a row to the team table
+
+    //TODO Add a row to the nfl team table
+
+    //TODO Add a row to the position table
+
+    //TODO add a row to the player table
+
+
 }
