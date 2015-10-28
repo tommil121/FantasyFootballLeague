@@ -45,11 +45,53 @@ public class MyDBHandler extends SQLiteOpenHelper{
 
 
     public MyDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
 
+
+    //the first time this is run, the onCreate gets called;
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //create each table separately for error checking purposes
+
+        //create and execute team table sql
+        String query = "CREATE TABLE " + TABLE_TEAM + "(" +
+                COLUMN_TEAM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_TEAM_NAME + " TEXT NOT NULL, " +
+                COLUMN_TEAM_LEAGUE + " TEXT NOT NULL, " +
+                COLUMN_TEAM_SEASON + " TEXT NOT NULL " +
+                ");";
+
+        db.execSQL(query);
+
+        //create and execute nfl_team table sql
+        query = "CREATE TABLE " + TABLE_NFL_TEAM + "(" +
+                COLUMN_NFL_TEAM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_NFL_TEAM_NAME + " TEXT NOT NULL, " +
+                COLUMN_NFL_TEAM_STATE + " TEXT NOT NULL " +
+                ");";
+
+        db.execSQL(query);
+
+        //create and execute position table sql
+        query = "CREATE TABLE " + TABLE_POSITION + "(" +
+                COLUMN_POSITION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_POSITION_NAME + " TEXT NOT NULL " +
+                ");";
+
+        db.execSQL(query);
+
+        //create and write player table sql
+        query = "CREATE TABLE " + TABLE_PLAYER + "(" +
+                COLUMN_PLAYER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_PLAYER_NAME + " TEXT NOT NULL, " +
+                COLUMN_PLAYER_NFL_TEAM_ID + " INTEGER NOT NULL, " +
+                COLUMN_PLAYER_POSITION_ID + "INTEGER NOT NULL, " +
+                "FOREIGN KEY(PLAYER_NFL_TEAM_FK) REFERENCES NFL_TEAM(NFL_TEAM_ID)" +
+                "FOREIGN KEY(PLAYER_POSITION_FK) REFERENCES POSITION(POSITION_ID)" +
+                ");";
+
+        db.execSQL(query);
 
     }
 
