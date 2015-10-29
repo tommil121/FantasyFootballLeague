@@ -182,10 +182,11 @@ public class MyDBHandler extends SQLiteOpenHelper{
         //Add makeshift table lables
         dbString = "Name";
 
+
         //while the cursor is not after the last item (aka you are not at the end of the list)
         while(!c.isAfterLast()){
             if(c.getString(c.getColumnIndex("TEAM_NAME"))!= null
-                    && c.getString(c.getColumnIndex("TEAM_LEAGUE"))!= null
+                    && c.getString(c.getColumnIndex("LEAGUE_ID"))!= null
                     && c.getString(c.getColumnIndex("TEAM_SEASON"))!= null){
                 dbString += c.getString(c.getColumnIndex("TEAM_NAME"));
                 dbString += "\n";
