@@ -1,15 +1,14 @@
 package com.example.tom.fantasyfootballleague;
 
 /**
- * Created by Dustin on 10/28/2015.
+ * Created by Dustin on 10/29/2015.
  */
+public class League {
 
-
-public class Position {
-    private int id;
+    private int leagueId;
     private String name;
 
-    public Position(String name) {
+    public League(String name) {
         this.name = name;
     }
 
