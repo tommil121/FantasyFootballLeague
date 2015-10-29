@@ -110,12 +110,93 @@ public class MyDBHandler extends SQLiteOpenHelper{
     }
 
     //TODO Add a row to the team table
+    public void addTeam(Team team){
+        ContentValues values = new ContentValues();
 
-    //TODO Add a row to the nfl team table
+        //put the values into the values variable. Prepare to insert
+        values.put(TABLE_TEAM, team.getName());
+        values.put(TABLE_TEAM, team.getLeague());
+        values.put(TABLE_TEAM, team.getSeason());
 
-    //TODO Add a row to the position table
+        //connects to the database (so you can write into it)
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert(TABLE_TEAM, null, values);
+        db.close();
 
-    //TODO add a row to the player table
+    }
 
+    //TODO Delete a row from the team table
+    public void deleteTeam(String teamName){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_TEAM + " WHERE " + COLUMN_TEAM_NAME + "=\"" + teamName + "\";");
+
+    }
+
+    //Add a row to the nfl team table
+    public void addNflTeam(NFL_Team nflTeam){
+        ContentValues values = new ContentValues();
+
+        //put the values into the values variable. Prepare to insert
+        values.put(TABLE_NFL_TEAM, nflTeam.getName());
+        values.put(TABLE_NFL_TEAM, nflTeam.getState());
+
+
+        //connects to the database (so you can write into it)
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert(TABLE_NFL_TEAM, null, values);
+        db.close();
+    }
+
+    //Delete a row from the nfl team table
+    public void deleteNflTeam(String nflTeamName){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NFL_TEAM + " WHERE " + COLUMN_NFL_TEAM_NAME + "=\"" + nflTeamName + "\";");
+
+    }
+
+    //Add a row to the position table
+    public void addPosition(Position position){
+        ContentValues values = new ContentValues();
+
+        //put the values into the values variable. Prepare to insert
+        values.put(TABLE_POSITION, position.getName());
+
+
+        //connects to the database (so you can write into it)
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert(TABLE_POSITION, null, values);
+        db.close();
+    }
+
+    //Delete a row from the position table
+    public void deletePosition(String positionName){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_POSITION + " WHERE " + COLUMN_POSITION_NAME + "=\"" + positionName + "\";");
+
+    }
+
+    //Add a row to the player table
+    public void addPlayer(Player player){
+        ContentValues values = new ContentValues();
+
+        //put the values into the values variable. Prepare to insert
+        values.put(TABLE_PLAYER, player.getName());
+        values.put(TABLE_PLAYER, player.getNflTeamId());
+        values.put(TABLE_PLAYER, player.getPositionId());
+        values.put(TABLE_PLAYER, player.getTeamId());
+
+
+        //connects to the database (so you can write into it)
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert(TABLE_PLAYER, null, values);
+        db.close();
+    }
+
+    //Delete a row from the player table
+    public void deletePlayer(String playerName){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_PLAYER + " WHERE " + COLUMN_PLAYER_NAME + "=\"" + playerName + "\";");
+
+    }
 
 }
