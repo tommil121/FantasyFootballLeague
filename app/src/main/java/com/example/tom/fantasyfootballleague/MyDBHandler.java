@@ -39,7 +39,7 @@ public class MyDBHandler extends SQLiteOpenHelper{
     public static final String COLUMN_PLAYER_NAME = "PLAYER_NAME";
     public static final String COLUMN_PLAYER_NFL_TEAM_ID = "NFL_TEAM_ID";
     public static final String COLUMN_PLAYER_POSITION_ID = "POSITION_ID";
-
+    public static final String COLUMN_PLAYER_TEAM_ID = "TEAM_ID";
 
 
 
@@ -86,9 +86,11 @@ public class MyDBHandler extends SQLiteOpenHelper{
                 COLUMN_PLAYER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_PLAYER_NAME + " TEXT NOT NULL, " +
                 COLUMN_PLAYER_NFL_TEAM_ID + " INTEGER NOT NULL, " +
-                COLUMN_PLAYER_POSITION_ID + "INTEGER NOT NULL, " +
+                COLUMN_PLAYER_POSITION_ID + " INTEGER NOT NULL, " +
+                COLUMN_PLAYER_TEAM_ID + " INTEGER NOT NULL " +
                 "FOREIGN KEY(PLAYER_NFL_TEAM_FK) REFERENCES NFL_TEAM(NFL_TEAM_ID)" +
                 "FOREIGN KEY(PLAYER_POSITION_FK) REFERENCES POSITION(POSITION_ID)" +
+                "FOREIGN KEY(PLAYER_TEAM_FK) REFERENCES TEAM(TEAM_ID)" +
                 ");";
 
         db.execSQL(query);

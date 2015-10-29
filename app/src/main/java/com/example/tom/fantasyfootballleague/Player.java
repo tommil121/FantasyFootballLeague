@@ -8,7 +8,10 @@ package com.example.tom.fantasyfootballleague;
 //TODO create getters and setters for each variable
 public class Player {
 
-    private int _id;
-    private String _name;
+    private int id;
+    private String name;
+    private int nflTeamId;
+    private int positionId;
+
 
 }
